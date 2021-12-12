@@ -5,7 +5,7 @@ module.exports = grammar({
   rules: {
     // this is tree-sitter's root file
     // source_file: ($) => $.build_definition,
-    source_file: ($) => $.integer_literal,
+    source_file: ($) => $.literal,
 
     //   // built-ins
     //   NEWLINE: ($) => choice("\n", "\r\n"),
@@ -215,45 +215,6 @@ module.exports = grammar({
     //       $.NEWLINE
     //     ),
 
-    //   // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")
-    //   // STRING_MULTILINE_VALUE: \.*?(''')\
-    //   // STRING_SIMPLE_VALUE: \.*?(?<!\\)(\\\\)*?'\
-    //   string_literal: ($) => choice($.string_simple, $.string_multiline),
-
-    //   // shamelessly stolen from <https://github.com/tree-sitter/tree-sitter-c/>
-    //   escape_sequence: ($) =>
-    //     token(
-    //       prec(
-    //         1,
-    //         seq(
-    //           "\\",
-    //           choice(
-    //             /[^xuU]/,
-    //             /\d{2,3}/,
-    //             /x[0-9a-fA-F]{2,}/,
-    //             /u[0-9a-fA-F]{4}/,
-    //             /U[0-9a-fA-F]{8}/
-    //           )
-    //         )
-    //       )
-    //     ),
-
-    //   string_simple: ($) =>
-    //     seq(
-    //       "'",
-    //       repeat(
-    //         choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence)
-    //       ),
-    //       "'"
-    //     ),
-
-    //   string_multiline: ($) =>
-    //     seq(
-    //       "'''",
-    //       repeat(choice(token.immediate(prec(1, /[^\\]+/)), $.escape_sequence)),
-    //       "'''"
-    //     ),
-
     //   // subscript_expression: postfix_expression "[" expression "]"
     //   subscript_expression: ($) =>
     //     seq($.postfix_expression, "[", $.expression, "]"),
@@ -265,15 +226,15 @@ module.exports = grammar({
     //   // unary_operator: "not" | "+" | "-"
     //   unary_operator: ($) => choice("not", "+", "-"),
 
-    //   // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
-    //   literal: ($) =>
-    //     choice(
-    //       $.integer_literal,
-    //       $.string_literal,
-    //       $.boolean_literal,
-    //       $.array_literal,
-    //       $.dictionary_literal
-    //     ),
+    // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
+    literal: ($) =>
+      choice(
+        $.integer_literal,
+        $.string_literal
+        // $.boolean_literal,
+        // $.array_literal,
+        // $.dictionary_literal
+      ),
 
     // integer_literal: decimal_literal | octal_literal | hex_literal
     integer_literal: ($) =>
@@ -296,5 +257,44 @@ module.exports = grammar({
 
     // HEX_NUMBER: /[a-fA-F0-9]+/
     _HEX_NUMBER: ($) => /[a-fA-F0-9]+/,
+
+    // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")
+    // STRING_MULTILINE_VALUE: \.*?(''')\
+    // STRING_SIMPLE_VALUE: \.*?(?<!\\)(\\\\)*?'\
+    string_literal: ($) => choice($.string_simple, $.string_multiline),
+
+    // shamelessly stolen from <https://github.com/tree-sitter/tree-sitter-c/>
+    escape_sequence: ($) =>
+      token(
+        prec(
+          1,
+          seq(
+            "\\",
+            choice(
+              /[^xuU]/,
+              /\d{2,3}/,
+              /x[0-9a-fA-F]{2,}/,
+              /u[0-9a-fA-F]{4}/,
+              /U[0-9a-fA-F]{8}/
+            )
+          )
+        )
+      ),
+
+    string_simple: ($) =>
+      seq(
+        "'",
+        repeat(
+          choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence)
+        ),
+        "'"
+      ),
+
+    string_multiline: ($) =>
+      seq(
+        "'''",
+        repeat(choice(token.immediate(prec(1, /[^\\]+/)), $.escape_sequence)),
+        "'''"
+      ),
   },
 });

@@ -33,6 +33,25 @@
     }
   },
   {
+    "type": "literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "octal_literal",
     "named": true,
     "fields": {}
@@ -46,11 +65,68 @@
       "required": true,
       "types": [
         {
-          "type": "integer_literal",
+          "type": "literal",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "string_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "string_multiline",
+          "named": true
+        },
+        {
+          "type": "string_simple",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_multiline",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string_simple",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "'",
+    "named": false
+  },
+  {
+    "type": "'''",
+    "named": false
   },
   {
     "type": "0o",
@@ -59,5 +135,9 @@
   {
     "type": "0x",
     "named": false
+  },
+  {
+    "type": "escape_sequence",
+    "named": true
   }
 ]
