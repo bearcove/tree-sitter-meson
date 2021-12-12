@@ -36,9 +36,6 @@ module.exports = grammar({
     //   // assignment_operator: "=" | "*=" | "/=" | "%=" | "+=" | "-="
     //   assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
 
-    //   // condition: expression
-    //   condition: ($) => $.expression,
-
     //   // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
     //   // (this is an error, there's no `assignment_expression` rule, since assignments
     //   // are not expressions in meson)
@@ -205,13 +202,28 @@ module.exports = grammar({
     statement: ($) =>
       seq(
         choice(
+          $.selection_statement,
           $.expression,
-          // $.selection_statement,
           // $.iteration_statement,
           // $.assignment_statement,
         ),
         $._NEWLINE,
       ),
+
+    // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
+    selection_statement: ($) =>
+      seq(
+        "if",
+        $.condition,
+        $._NEWLINE,
+        repeat($.statement),
+        repeat(seq("elif", $.condition, $._NEWLINE, repeat($.statement))),
+        seq("else", repeat($.statement)),
+        "endif",
+      ),
+
+    // condition: expression
+    condition: ($) => $.expression,
 
     expression: ($) => choice($.literal),
 
