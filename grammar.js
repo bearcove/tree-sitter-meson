@@ -315,6 +315,7 @@ module.exports = grammar({
       ),
 
     // key_value_item: expression ":" expression
-    key_value_item: ($) => seq($.expression, ":", $.expression),
+    key_value_item: ($) =>
+      seq(field("key", $.expression), ":", field("value", $.expression)),
   },
 });
