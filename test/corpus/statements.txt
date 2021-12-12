@@ -7,3 +7,99 @@ if true
 endif
 
 --------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (selection_statement
+        (condition
+          (expression
+            (literal
+              (boolean_literal))))
+        (statement
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))))))
+
+================================================================================
+Selection statement (simple if/else)
+================================================================================
+
+if true
+	234
+else
+  'super trouper'
+endif
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (selection_statement
+        (condition
+          (expression
+            (literal
+              (boolean_literal))))
+        (statement
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))
+        (statement
+          (expression
+            (literal
+              (string_literal
+                (string_simple)))))))))
+
+================================================================================
+Selection statement (simple if/elif/else)
+================================================================================
+
+if true
+	234
+elif true
+  false
+elif true
+  []
+else
+  'super trouper'
+endif
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (selection_statement
+        (condition
+          (expression
+            (literal
+              (boolean_literal))))
+        (statement
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))
+        (condition
+          (expression
+            (literal
+              (boolean_literal))))
+        (statement
+          (expression
+            (literal
+              (boolean_literal))))
+        (condition
+          (expression
+            (literal
+              (boolean_literal))))
+        (statement
+          (expression
+            (literal
+              (array_literal))))
+        (statement
+          (expression
+            (literal
+              (string_literal
+                (string_simple)))))))))

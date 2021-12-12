@@ -6,8 +6,6 @@ module.exports = grammar({
     // this is tree-sitter's root file
     source_file: ($) => $.build_definition,
 
-    //   // anything beyond that point directly references the meson grammar
-
     //   // additive_expression: multiplicative_expression | (additive_expression additive_operator multiplicative_expression)
     //   additive_expression: ($) =>
     //     choice(
@@ -172,18 +170,6 @@ module.exports = grammar({
     //   relational_operator: ($) =>
     //     choice(">", "<", ">=", "<=", "in", seq("not", "in")),
 
-    //   // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
-    //   selection_statement: ($) =>
-    //     seq(
-    //       "if",
-    //       $.condition,
-    //       $.NEWLINE,
-    //       repeat($.statement),
-    //       repeat(seq("elif", $.condition, $.NEWLINE, repeat($.statement))),
-    //       seq("else", repeat($.statement)),
-    //       "endif"
-    //     ),
-
     //   // subscript_expression: postfix_expression "[" expression "]"
     //   subscript_expression: ($) =>
     //     seq($.postfix_expression, "[", $.expression, "]"),
@@ -202,12 +188,13 @@ module.exports = grammar({
     statement: ($) =>
       seq(
         choice(
-          $.selection_statement,
           $.expression,
+          $.selection_statement,
           // $.iteration_statement,
           // $.assignment_statement,
         ),
-        $._NEWLINE,
+        // token.immediate($._NEWLINE),
+        token.immediate("\n"),
       ),
 
     // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
@@ -218,7 +205,7 @@ module.exports = grammar({
         $._NEWLINE,
         repeat($.statement),
         repeat(seq("elif", $.condition, $._NEWLINE, repeat($.statement))),
-        seq("else", repeat($.statement)),
+        optional(seq("else", repeat($.statement))),
         "endif",
       ),
 
