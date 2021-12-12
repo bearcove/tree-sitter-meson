@@ -59,3 +59,44 @@ false
       (expression
         (literal
           (boolean_literal))))))
+
+================================================================================
+Array literal
+================================================================================
+
+[1, 'a', true, [2, 3, 4]]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (array_literal
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (expression
+              (literal
+                (string_literal
+                  (string_simple))))
+            (expression
+              (literal
+                (boolean_literal)))
+            (expression
+              (literal
+                (array_literal
+                  (expression
+                    (literal
+                      (integer_literal
+                        (decimal_literal))))
+                  (expression
+                    (literal
+                      (integer_literal
+                        (decimal_literal))))
+                  (expression
+                    (literal
+                      (integer_literal
+                        (decimal_literal)))))))))))))

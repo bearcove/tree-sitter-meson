@@ -1,5 +1,20 @@
 [
   {
+    "type": "array_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "boolean_literal",
     "named": true,
     "fields": {}
@@ -75,6 +90,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "array_literal",
+          "named": true
+        },
         {
           "type": "boolean_literal",
           "named": true
@@ -195,11 +214,23 @@
     "named": false
   },
   {
+    "type": ",",
+    "named": false
+  },
+  {
     "type": "0o",
     "named": false
   },
   {
     "type": "0x",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {

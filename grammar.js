@@ -29,9 +29,6 @@ module.exports = grammar({
     //       $.keyword_arguments
     //     ),
 
-    //   // array_literal: "[" [expression_list] "]"
-    //   array_literal: ($) => seq("[", optional($.expression_list), "]"),
-
     //   // assignment_statement: expression asssignment_operator expression
     //   assignment_statement: ($) =>
     //     seq($.expression, $.assignment_operator, $.expression),
@@ -227,7 +224,7 @@ module.exports = grammar({
         $.integer_literal,
         $.string_literal,
         $.boolean_literal,
-        // $.array_literal,
+        $.array_literal,
         // $.dictionary_literal
       ),
 
@@ -301,6 +298,14 @@ module.exports = grammar({
 
     // boolean_literal: "true" | "false"
     boolean_literal: ($) => choice("true", "false"),
+
+    // array_literal: "[" [expression_list] "]"
+    array_literal: ($) =>
+      seq(
+        "[",
+        optional(seq($.expression, repeat(seq(",", $.expression)))),
+        "]",
+      ),
 
     _NEWLINE: ($) => choice("\n", "\r\n"),
   },
