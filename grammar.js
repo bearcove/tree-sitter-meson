@@ -48,9 +48,6 @@ module.exports = grammar({
     //       seq($.logical_or_expression, "?", $.expression, ":", $.expression)
     //     ),
 
-    //   // dictionary_literal: "{" [key_value_list] "}"
-    //   dictionary_literal: ($) => seq("{", optional($.key_value_list), "}"),
-
     //   // equality_expression: relational_expression | (equality_expression equality_operator relational_expression)
     //   equality_expression: ($) =>
     //     choice(
@@ -225,7 +222,7 @@ module.exports = grammar({
         $.string_literal,
         $.boolean_literal,
         $.array_literal,
-        // $.dictionary_literal
+        $.dictionary_literal,
       ),
 
     // integer_literal: decimal_literal | octal_literal | hex_literal
@@ -308,5 +305,16 @@ module.exports = grammar({
       ),
 
     _NEWLINE: ($) => choice("\n", "\r\n"),
+
+    // dictionary_literal: "{" [key_value_list] "}"
+    dictionary_literal: ($) =>
+      seq(
+        "{",
+        optional(seq($.key_value_item, repeat(seq(",", $.key_value_item)))),
+        "}",
+      ),
+
+    // key_value_item: expression ":" expression
+    key_value_item: ($) => seq($.expression, ":", $.expression),
   },
 });

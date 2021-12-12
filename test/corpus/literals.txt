@@ -100,3 +100,158 @@ Array literal
                     (literal
                       (integer_literal
                         (decimal_literal)))))))))))))
+
+================================================================================
+Dictionary literal (empty)
+================================================================================
+
+{}
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (dictionary_literal))))))
+
+================================================================================
+Dictionary literal (one key)
+================================================================================
+
+{ 'foo': 'bar' }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (dictionary_literal
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple)))))))))))
+
+================================================================================
+Dictionary literal (two keys)
+================================================================================
+
+{ 'foo': 'bar', 'baz': 234 }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (dictionary_literal
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple)))))
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (integer_literal
+                    (decimal_literal)))))))))))
+
+================================================================================
+Dictionary literal (array value)
+================================================================================
+
+{ 'options': ['yay', 0xf00d, false] }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (dictionary_literal
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (array_literal
+                    (expression
+                      (literal
+                        (string_literal
+                          (string_simple))))
+                    (expression
+                      (literal
+                        (integer_literal
+                          (hex_literal))))
+                    (expression
+                      (literal
+                        (boolean_literal)))))))))))))
+
+================================================================================
+Dictionary literal (nested)
+================================================================================
+
+{ 'ab': { 'a': 'b' }, 'cd': { 'c': 'd' } }
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (literal
+          (dictionary_literal
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (dictionary_literal
+                    (key_value_item
+                      (expression
+                        (literal
+                          (string_literal
+                            (string_simple))))
+                      (expression
+                        (literal
+                          (string_literal
+                            (string_simple)))))))))
+            (key_value_item
+              (expression
+                (literal
+                  (string_literal
+                    (string_simple))))
+              (expression
+                (literal
+                  (dictionary_literal
+                    (key_value_item
+                      (expression
+                        (literal
+                          (string_literal
+                            (string_simple))))
+                      (expression
+                        (literal
+                          (string_literal
+                            (string_simple)))))))))))))))
