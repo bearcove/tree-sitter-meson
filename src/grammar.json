@@ -33,15 +33,16 @@
             {
               "type": "SYMBOL",
               "name": "iteration_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "assignment_statement"
             }
           ]
         },
         {
-          "type": "IMMEDIATE_TOKEN",
-          "content": {
-            "type": "STRING",
-            "value": "\n"
-          }
+          "type": "SYMBOL",
+          "name": "_NEWLINE"
         }
       ]
     },
@@ -169,6 +170,52 @@
         }
       ]
     },
+    "assignment_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assignment_operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "expression"
+        }
+      ]
+    },
+    "assignment_operator": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": "*="
+        },
+        {
+          "type": "STRING",
+          "value": "/="
+        },
+        {
+          "type": "STRING",
+          "value": "%="
+        },
+        {
+          "type": "STRING",
+          "value": "+="
+        },
+        {
+          "type": "STRING",
+          "value": "-="
+        }
+      ]
+    },
     "jump_statement": {
       "type": "SEQ",
       "members": [
@@ -201,6 +248,10 @@
         {
           "type": "SYMBOL",
           "name": "literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id_expression"
         }
       ]
     },

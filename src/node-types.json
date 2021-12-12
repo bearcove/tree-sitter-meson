@@ -15,6 +15,30 @@
     }
   },
   {
+    "type": "assignment_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "assignment_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment_operator",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "boolean_literal",
     "named": true,
     "fields": {}
@@ -77,6 +101,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "id_expression",
+          "named": true
+        },
         {
           "type": "literal",
           "named": true
@@ -269,6 +297,10 @@
       "required": true,
       "types": [
         {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
           "type": "comment",
           "named": true
         },
@@ -345,6 +377,10 @@
     "named": false
   },
   {
+    "type": "%=",
+    "named": false
+  },
+  {
     "type": "'",
     "named": false
   },
@@ -357,7 +393,23 @@
     "named": false
   },
   {
+    "type": "*=",
+    "named": false
+  },
+  {
+    "type": "+=",
+    "named": false
+  },
+  {
     "type": ",",
+    "named": false
+  },
+  {
+    "type": "-=",
+    "named": false
+  },
+  {
+    "type": "/=",
     "named": false
   },
   {
@@ -370,6 +422,10 @@
   },
   {
     "type": ":",
+    "named": false
+  },
+  {
+    "type": "=",
     "named": false
   },
   {

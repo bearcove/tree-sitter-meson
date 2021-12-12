@@ -103,3 +103,23 @@ endif
             (literal
               (string_literal
                 (string_simple)))))))))
+
+================================================================================
+Assignment
+================================================================================
+
+foo = 'bar'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (assignment_statement
+        (expression
+          (id_expression))
+        (assignment_operator)
+        (expression
+          (literal
+            (string_literal
+              (string_simple))))))))

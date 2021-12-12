@@ -27,13 +27,6 @@ module.exports = grammar({
     //       $.keyword_arguments
     //     ),
 
-    //   // assignment_statement: expression asssignment_operator expression
-    //   assignment_statement: ($) =>
-    //     seq($.expression, $.assignment_operator, $.expression),
-
-    //   // assignment_operator: "=" | "*=" | "/=" | "%=" | "+=" | "-="
-    //   assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
-
     //   // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
     //   // (this is an error, there's no `assignment_expression` rule, since assignments
     //   // are not expressions in meson)
@@ -167,10 +160,9 @@ module.exports = grammar({
           $.expression,
           $.selection_statement,
           $.iteration_statement,
-          // $.assignment_statement,
+          $.assignment_statement,
         ),
-        // token.immediate($._NEWLINE),
-        token.immediate("\n"),
+        $._NEWLINE,
       ),
 
     // selection_statement: "if" condition NEWLINE (statement)* ("elif" condition NEWLINE (statement)*)* ["else" (statement)*] "endif"
@@ -197,13 +189,20 @@ module.exports = grammar({
         "endforeach",
       ),
 
+    // assignment_statement: expression asssignment_operator expression
+    assignment_statement: ($) =>
+      seq($.expression, $.assignment_operator, $.expression),
+
+    // assignment_operator: "=" | "*=" | "/=" | "%=" | "+=" | "-="
+    assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
+
     // jump_statement: ("break" | "continue") NEWLINE
     jump_statement: ($) => seq(choice("break", "continue"), $._NEWLINE),
 
     // condition: expression
     condition: ($) => $.expression,
 
-    expression: ($) => choice($.literal),
+    expression: ($) => choice($.literal, $.id_expression),
 
     // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
     literal: ($) =>
