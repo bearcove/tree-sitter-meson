@@ -1,6 +1,7 @@
 (string_literal) @string
 (boolean_literal) @keyword
 (integer_literal) @number
+
 (comment) @comment
 
 (id_expression) @variable.parameter
@@ -14,6 +15,14 @@
 "endforeach" @keyword
 "break" @keyword
 "continue" @keyword
+
+[
+	"+"
+	"-"
+	"*"
+	"/"
+	"%"
+] @operator
 
 [
 	":"

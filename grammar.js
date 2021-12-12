@@ -181,7 +181,7 @@ module.exports = grammar({
         $.conditional_expression,
         $.binary_expression,
         $.literal,
-        $.id_expression,
+        $.primary_expression,
       ),
 
     binary_expression: ($) =>
@@ -215,9 +215,14 @@ module.exports = grammar({
         $.dictionary_literal,
       ),
 
-    // integer_literal: decimal_literal | octal_literal | hex_literal
+    // integer_literal: decimal_literal | octal_literal | hex_literal | binary_literal
     integer_literal: ($) =>
-      choice($.decimal_literal, $.octal_literal, $.hex_literal),
+      choice(
+        $.decimal_literal,
+        $.octal_literal,
+        $.hex_literal,
+        $.binary_literal,
+      ),
 
     // decimal_literal: DECIMAL_NUMBER
     decimal_literal: ($) => $._DECIMAL_NUMBER,
@@ -236,6 +241,9 @@ module.exports = grammar({
 
     // HEX_NUMBER: /[a-fA-F0-9]+/
     _HEX_NUMBER: ($) => /[a-fA-F0-9]+/,
+
+    binary_literal: ($) => seq("0b", $._BINARY_NUMBER),
+    _BINARY_NUMBER: ($) => /[01]+/,
 
     // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")
     // STRING_MULTILINE_VALUE: \.*?(''')\
@@ -311,6 +319,9 @@ module.exports = grammar({
     // identifier_list: id_expression ("," id_expression)*
     identifier_list: ($) =>
       seq($.id_expression, repeat(seq(",", $.id_expression))),
+
+    primary_expression: ($) =>
+      choice(seq("(", $.expression, ")"), $.id_expression),
 
     // id_expression: IDENTIFIER
     id_expression: ($) => $._IDENTIFIER,

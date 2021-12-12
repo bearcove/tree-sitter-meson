@@ -93,3 +93,24 @@ foo ? bar : baz
             (id_expression))
           (expression
             (id_expression)))))))
+
+================================================================================
+Primary expressions
+================================================================================
+
+(((foobar)))
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (primary_expression
+          (expression
+            (primary_expression
+              (expression
+                (primary_expression
+                  (expression
+                    (primary_expression
+                      (id_expression))))))))))))

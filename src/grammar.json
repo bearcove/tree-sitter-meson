@@ -259,7 +259,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "id_expression"
+          "name": "primary_expression"
         }
       ]
     },
@@ -408,6 +408,10 @@
         {
           "type": "SYMBOL",
           "name": "hex_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "binary_literal"
         }
       ]
     },
@@ -452,6 +456,23 @@
     "_HEX_NUMBER": {
       "type": "PATTERN",
       "value": "[a-fA-F0-9]+"
+    },
+    "binary_literal": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "0b"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_BINARY_NUMBER"
+        }
+      ]
+    },
+    "_BINARY_NUMBER": {
+      "type": "PATTERN",
+      "value": "[01]+"
     },
     "string_literal": {
       "type": "CHOICE",
@@ -752,6 +773,32 @@
               }
             ]
           }
+        }
+      ]
+    },
+    "primary_expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id_expression"
         }
       ]
     },
