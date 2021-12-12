@@ -102,6 +102,21 @@
     }
   },
   {
+    "type": "conditional_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "decimal_literal",
     "named": true,
     "fields": {}
@@ -131,6 +146,10 @@
       "types": [
         {
           "type": "binary_expression",
+          "named": true
+        },
+        {
+          "type": "conditional_expression",
           "named": true
         },
         {
@@ -483,6 +502,10 @@
   },
   {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "?",
     "named": false
   },
   {

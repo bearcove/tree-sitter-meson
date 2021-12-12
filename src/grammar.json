@@ -247,6 +247,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "conditional_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "binary_expression"
         },
         {
@@ -335,6 +339,35 @@
           "value": "%"
         }
       ]
+    },
+    "conditional_expression": {
+      "type": "PREC_LEFT",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": "?"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expression"
+          }
+        ]
+      }
     },
     "literal": {
       "type": "CHOICE",

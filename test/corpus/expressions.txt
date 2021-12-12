@@ -73,3 +73,23 @@ AddMul Precedence
                 (literal
                   (integer_literal
                     (decimal_literal)))))))))))
+
+================================================================================
+Ternary operator
+================================================================================
+
+foo ? bar : baz
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (conditional_expression
+          (expression
+            (id_expression))
+          (expression
+            (id_expression))
+          (expression
+            (id_expression)))))))

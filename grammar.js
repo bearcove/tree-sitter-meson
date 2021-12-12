@@ -13,15 +13,6 @@ module.exports = grammar({
     //       $.keyword_arguments
     //     ),
 
-    //   // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
-    //   // (this is an error, there's no `assignment_expression` rule, since assignments
-    //   // are not expressions in meson)
-    //   conditional_expression: ($) =>
-    //     choice(
-    //       $.logical_or_expression,
-    //       seq($.logical_or_expression, "?", $.expression, ":", $.expression)
-    //     ),
-
     //   // equality_expression: relational_expression | (equality_expression equality_operator relational_expression)
     //   equality_expression: ($) =>
     //     choice(
@@ -185,7 +176,13 @@ module.exports = grammar({
     // condition: expression
     condition: ($) => $.expression,
 
-    expression: ($) => choice($.binary_expression, $.literal, $.id_expression),
+    expression: ($) =>
+      choice(
+        $.conditional_expression,
+        $.binary_expression,
+        $.literal,
+        $.id_expression,
+      ),
 
     binary_expression: ($) =>
       choice(
@@ -201,6 +198,12 @@ module.exports = grammar({
 
     // multiplicative_operator: "*" | "/" | "%"
     multiplicative_operator: ($) => choice("*", "/", "%"),
+
+    // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
+    // (this is an error, there's no `assignment_expression` rule, since assignments
+    // are not expressions in meson)
+    conditional_expression: ($) =>
+      prec.left(1, seq($.expression, "?", $.expression, ":", $.expression)),
 
     // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
     literal: ($) =>
