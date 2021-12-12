@@ -1,11 +1,63 @@
 [
   {
-    "type": "source_file",
+    "type": "decimal_literal",
     "named": true,
     "fields": {}
   },
   {
-    "type": "hello",
+    "type": "hex_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "integer_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "octal_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "octal_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "0o",
+    "named": false
+  },
+  {
+    "type": "0x",
     "named": false
   }
 ]
