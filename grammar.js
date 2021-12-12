@@ -6,69 +6,15 @@ module.exports = grammar({
     // this is tree-sitter's root file
     source_file: ($) => $.build_definition,
 
-    //   // argument_list: positional_arguments ["," keyword_arguments] | keyword_arguments
-    //   argument_list: ($) =>
-    //     choice(
-    //       seq($.positional_arguments, optional(seq(",", $.keyword_arguments))),
-    //       $.keyword_arguments
-    //     ),
-
     //   // expression_list: expression ("," expression)*
     //   expression_list: ($) => seq($.expression, repeat(seq(",", $.expression))),
 
     //   // expression_statement: expression
     //   expression_statement: ($) => $.expression,
 
-    //   // function_expression: id_expression "(" [argument_list] ")"
-    //   function_expression: ($) =>
-    //     seq($.id_expression, "(", optional($.argument_list), ")"),
-
-    //   // key_value_item: expression ":" expression
-    //   key_value_item: ($) => seq($.expression, ":", $.expression),
-
-    //   // key_value_list: key_value_item ("," key_value_item)*
-    //   key_value_list: ($) =>
-    //     seq($.key_value_item, repeat(seq(",", $.key_value_item))),
-
-    //   // keyword_item: id_expression ":" expression
-    //   keyword_item: ($) => seq($.id_expression, ":", $.expression),
-
-    //   // keyword_arguments: keyword_item ("," keyword_item)*
-    //   keyword_arguments: ($) =>
-    //     seq($.keyword_item, repeat(seq(",", $.keyword_item))),
-
-    //   // logical_and_expression: equality_expression | (logical_and_expression "and" equality_expression)
-    //   logical_and_expression: ($) =>
-    //     choice(
-    //       $.equality_expression,
-    //       seq($.logical_and_expression, "and", $.equality_expression)
-    //     ),
-
-    //   // logical_or_expression: logical_and_expression | (logical_or_expression "or" logical_and_expression)
-    //   logical_or_expression: ($) =>
-    //     choice(
-    //       $.logical_and_expression,
-    //       seq($.logical_or_expression, "or", $.logical_and_expression)
-    //     ),
-
     //   // method_expression: postfix_expression "." function_expression
     //   method_expression: ($) =>
     //     seq($.postfix_expression, ".", $.function_expression),
-
-    //   // multiplicative_expression: unary_expression | (multiplicative_expression multiplicative_operator unary_expression)
-    //   multiplicative_expression: ($) =>
-    //     choice(
-    //       $.unary_expression,
-    //       seq(
-    //         $.multiplicative_expression,
-    //         $.multiplicative_operator,
-    //         $.unary_expression
-    //       )
-    //     ),
-
-    //   // positional_arguments: expression ("," expression)*
-    //   positional_arguments: ($) =>
-    //     seq($.expression, repeat(seq(",", $.expression))),
 
     //   // postfix_expression: primary_expression | subscript_expression | function_expression | method_expression
     //   postfix_expression: ($) =>
@@ -160,12 +106,51 @@ module.exports = grammar({
 
     expression: ($) =>
       choice(
+        $.function_expression,
         $.conditional_expression,
         $.unary_expression,
+        $.subscript_expression,
         $.binary_expression,
         $.literal,
         $.primary_expression,
       ),
+
+    // function_expression: id_expression "(" [argument_list] ")"
+    function_expression: ($) =>
+      seq($.id_expression, "(", optional($.argument_list), ")"),
+
+    // argument_list: positional_arguments ["," keyword_arguments] | keyword_arguments
+    argument_list: ($) =>
+      seq(
+        choice($.keyword_item, $.expression),
+        repeat(seq(",", choice($.keyword_item, $.expression))),
+      ),
+    // argument_list: ($) =>
+    //   choice(
+    //     seq($.positional_arguments, optional(seq(",", $.keyword_arguments))),
+    //     $.keyword_arguments,
+    //   ),
+
+    // positional_arguments: expression ("," expression)*
+    positional_arguments: ($) =>
+      seq($.expression, repeat(seq(",", $.expression))),
+
+    // keyword_arguments: keyword_item ("," keyword_item)*
+    keyword_arguments: ($) =>
+      seq($.keyword_item, repeat(seq(",", $.keyword_item))),
+
+    // keyword_item: id_expression ":" expression
+    keyword_item: ($) => seq($.id_expression, ":", $.expression),
+
+    // key_value_item: expression ":" expression
+    key_value_item: ($) => seq($.expression, ":", $.expression),
+
+    // key_value_list: key_value_item ("," key_value_item)*
+    key_value_list: ($) =>
+      seq($.key_value_item, repeat(seq(",", $.key_value_item))),
+
+    subscript_expression: ($) =>
+      prec(2, seq($.expression, "[", $.expression, "]")),
 
     unary_expression: ($) =>
       choice(seq("!", $.expression), seq("-", $.expression)),

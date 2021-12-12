@@ -16,6 +16,7 @@ int_493 = 0o755
 int_1365 = 0b10101010101
 
 single_quote = 'contains a \' character'
+elem = array[123]
 
 combined = str1 + '_' + str2 # combined is now abc_xyz
 joined = '/usr/share' / 'projectname'    # => /usr/share/projectname

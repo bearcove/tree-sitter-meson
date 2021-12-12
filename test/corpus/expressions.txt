@@ -134,3 +134,92 @@ Unary negation
           (expression
             (primary_expression
               (id_expression))))))))
+
+================================================================================
+Subscript
+================================================================================
+
+a[234][512]
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (subscript_expression
+          (expression
+            (subscript_expression
+              (expression
+                (primary_expression
+                  (id_expression)))
+              (expression
+                (literal
+                  (integer_literal
+                    (decimal_literal))))))
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))))))
+
+================================================================================
+Function call
+================================================================================
+
+f(1, 2, 3)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (function_expression
+          (id_expression)
+          (argument_list
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))))))))
+
+================================================================================
+Function call with keyword arguments
+================================================================================
+
+f(1, 2, a: b, c: d)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (function_expression
+          (id_expression)
+          (argument_list
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (keyword_item
+              (id_expression)
+              (expression
+                (primary_expression
+                  (id_expression))))
+            (keyword_item
+              (id_expression)
+              (expression
+                (primary_expression
+                  (id_expression))))))))))

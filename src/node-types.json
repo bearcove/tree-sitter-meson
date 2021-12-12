@@ -5,6 +5,25 @@
     "fields": {}
   },
   {
+    "type": "argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "keyword_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "array_literal",
     "named": true,
     "fields": {},
@@ -171,6 +190,10 @@
           "named": true
         },
         {
+          "type": "function_expression",
+          "named": true
+        },
+        {
           "type": "literal",
           "named": true
         },
@@ -179,7 +202,30 @@
           "named": true
         },
         {
+          "type": "subscript_expression",
+          "named": true
+        },
+        {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "function_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "id_expression",
           "named": true
         }
       ]
@@ -307,6 +353,25 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "keyword_item",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "id_expression",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -487,6 +552,21 @@
       "types": [
         {
           "type": "escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression",
           "named": true
         }
       ]
