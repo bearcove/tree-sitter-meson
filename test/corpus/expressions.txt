@@ -15,7 +15,7 @@ Addition
             (literal
               (integer_literal
                 (decimal_literal))))
-          (additive_operator)
+          (add_operator)
           (expression
             (literal
               (integer_literal
@@ -38,7 +38,7 @@ Multiplication
             (literal
               (integer_literal
                 (decimal_literal))))
-          (multiplicative_operator)
+          (mult_operator)
           (expression
             (literal
               (integer_literal
@@ -61,14 +61,14 @@ AddMul Precedence
             (literal
               (integer_literal
                 (decimal_literal))))
-          (additive_operator)
+          (add_operator)
           (expression
             (binary_expression
               (expression
                 (literal
                   (integer_literal
                     (decimal_literal))))
-              (multiplicative_operator)
+              (mult_operator)
               (expression
                 (literal
                   (integer_literal
