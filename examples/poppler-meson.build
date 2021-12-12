@@ -1,0 +1,22 @@
+poppler_glib_cpp_args = []
+if cc.get_id() == 'msvc'
+	poppler_glib_cpp_args += ['-DG_OS_WIN32=1']
+endif
+
+poppler_glib = build_target('poppler-glib',
+  poppler_glib_sources,
+  target_type: 'static_library',
+	cpp_args: poppler_glib_cpp_args,
+	dependencies: [glib_dep, gobject_dep, gio_dep, cairo_dep, cairogobj_dep],
+  include_directories: include_directories('../internal', '.', '../goo', '../poppler', '..'),
+  install: true,
+)
+
+poppler_glib_dep = declare_dependency(
+	link_with: poppler_glib,
+  include_directories : include_directories('.'),
+)
+
+if meson.version().version_compare('>=0.54.0')
+  meson.override_dependency('poppler-glib', poppler_glib_dep)
+endif
