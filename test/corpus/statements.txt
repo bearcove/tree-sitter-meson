@@ -117,7 +117,8 @@ foo = 'bar'
     (statement
       (assignment_statement
         (expression
-          (id_expression))
+          (primary_expression
+            (id_expression)))
         (assignment_operator)
         (expression
           (literal
