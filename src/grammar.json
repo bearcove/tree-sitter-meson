@@ -25,6 +25,10 @@
             {
               "type": "SYMBOL",
               "name": "selection_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "iteration_statement"
             }
           ]
         },
@@ -116,6 +120,73 @@
         }
       ]
     },
+    "iteration_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "foreach"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier_list"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "id_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_NEWLINE"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "jump_statement"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "endforeach"
+        }
+      ]
+    },
+    "jump_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "break"
+            },
+            {
+              "type": "STRING",
+              "value": "continue"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_NEWLINE"
+        }
+      ]
+    },
     "condition": {
       "type": "SYMBOL",
       "name": "expression"
@@ -177,7 +248,7 @@
     },
     "_DECIMAL_NUMBER": {
       "type": "PATTERN",
-      "value": "[1-9][0-9]*"
+      "value": "[0-9]+"
     },
     "octal_literal": {
       "type": "SEQ",
@@ -489,6 +560,39 @@
           }
         }
       ]
+    },
+    "identifier_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "id_expression"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "id_expression"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "id_expression": {
+      "type": "SYMBOL",
+      "name": "_IDENTIFIER"
+    },
+    "_IDENTIFIER": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z_][a-zA-Z_0-9]*"
     }
   },
   "extras": [

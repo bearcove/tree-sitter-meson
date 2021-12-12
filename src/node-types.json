@@ -90,6 +90,26 @@
     "fields": {}
   },
   {
+    "type": "id_expression",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "identifier_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "integer_literal",
     "named": true,
     "fields": {},
@@ -111,6 +131,38 @@
         }
       ]
     }
+  },
+  {
+    "type": "iteration_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "id_expression",
+          "named": true
+        },
+        {
+          "type": "identifier_list",
+          "named": true
+        },
+        {
+          "type": "jump_statement",
+          "named": true
+        },
+        {
+          "type": "statement",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "jump_statement",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "key_value_item",
@@ -221,6 +273,10 @@
           "named": true
         },
         {
+          "type": "iteration_statement",
+          "named": true
+        },
+        {
           "type": "selection_statement",
           "named": true
         }
@@ -321,11 +377,23 @@
     "named": false
   },
   {
+    "type": "break",
+    "named": false
+  },
+  {
+    "type": "continue",
+    "named": false
+  },
+  {
     "type": "elif",
     "named": false
   },
   {
     "type": "else",
+    "named": false
+  },
+  {
+    "type": "endforeach",
     "named": false
   },
   {
@@ -338,6 +406,10 @@
   },
   {
     "type": "false",
+    "named": false
+  },
+  {
+    "type": "foreach",
     "named": false
   },
   {

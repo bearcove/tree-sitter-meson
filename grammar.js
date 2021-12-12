@@ -67,31 +67,6 @@ module.exports = grammar({
     //   function_expression: ($) =>
     //     seq($.id_expression, "(", optional($.argument_list), ")"),
 
-    //   // id_expression: IDENTIFIER
-    //   id_expression: ($) => $.IDENTIFIER,
-
-    //   // IDENTIFIER: /[a-zA-Z_][a-zA-Z_0-9]*/
-    //   IDENTIFIER: ($) => /[a-zA-Z_][a-zA-Z_0-9]*/,
-
-    //   // identifier_list: id_expression ("," id_expression)*
-    //   identifier_list: ($) =>
-    //     seq($.id_expression, repeat(seq(",", $.id_expression))),
-
-    //   // iteration_statement: "foreach" identifier_list ":" id_expression NEWLINE (statement | jump_statement)* "endforeach"
-    //   iteration_statement: ($) =>
-    //     seq(
-    //       "foreach",
-    //       $.identifier_list,
-    //       ":",
-    //       $.id_expression,
-    //       $.NEWLINE,
-    //       repeat(choice($.statement, $.jump_statement)),
-    //       "endforeach"
-    //     ),
-
-    //   // jump_statement: ("break" | "continue") NEWLINE
-    //   jump_statement: ($) => seq(choice("break", "continue"), $.NEWLINE),
-
     //   // key_value_item: expression ":" expression
     //   key_value_item: ($) => seq($.expression, ":", $.expression),
 
@@ -190,7 +165,7 @@ module.exports = grammar({
         choice(
           $.expression,
           $.selection_statement,
-          // $.iteration_statement,
+          $.iteration_statement,
           // $.assignment_statement,
         ),
         // token.immediate($._NEWLINE),
@@ -208,6 +183,21 @@ module.exports = grammar({
         optional(seq("else", repeat($.statement))),
         "endif",
       ),
+
+    // iteration_statement: "foreach" identifier_list ":" id_expression NEWLINE (statement | jump_statement)* "endforeach"
+    iteration_statement: ($) =>
+      seq(
+        "foreach",
+        $.identifier_list,
+        ":",
+        $.id_expression,
+        $._NEWLINE,
+        repeat(choice($.statement, $.jump_statement)),
+        "endforeach",
+      ),
+
+    // jump_statement: ("break" | "continue") NEWLINE
+    jump_statement: ($) => seq(choice("break", "continue"), $._NEWLINE),
 
     // condition: expression
     condition: ($) => $.expression,
@@ -232,7 +222,7 @@ module.exports = grammar({
     decimal_literal: ($) => $._DECIMAL_NUMBER,
 
     // DECIMAL_NUMBER: /[1-9][0-9]*/
-    _DECIMAL_NUMBER: ($) => /[1-9][0-9]*/,
+    _DECIMAL_NUMBER: ($) => /[0-9]+/,
 
     // octal_literal: "0o" OCTAL_NUMBER
     octal_literal: ($) => seq("0o", $._OCTAL_NUMBER),
@@ -316,5 +306,15 @@ module.exports = grammar({
     // key_value_item: expression ":" expression
     key_value_item: ($) =>
       seq(field("key", $.expression), ":", field("value", $.expression)),
+
+    // identifier_list: id_expression ("," id_expression)*
+    identifier_list: ($) =>
+      seq($.id_expression, repeat(seq(",", $.id_expression))),
+
+    // id_expression: IDENTIFIER
+    id_expression: ($) => $._IDENTIFIER,
+
+    // IDENTIFIER: /[a-zA-Z_][a-zA-Z_0-9]*/
+    _IDENTIFIER: ($) => /[a-zA-Z_][a-zA-Z_0-9]*/,
   },
 });
