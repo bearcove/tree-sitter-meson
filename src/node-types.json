@@ -1,5 +1,10 @@
 [
   {
+    "type": "boolean_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "decimal_literal",
     "named": true,
     "fields": {}
@@ -40,6 +45,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
         {
           "type": "integer_literal",
           "named": true
@@ -143,5 +152,13 @@
   {
     "type": "escape_sequence",
     "named": true
+  },
+  {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "true",
+    "named": false
   }
 ]

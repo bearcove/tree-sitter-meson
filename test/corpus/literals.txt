@@ -1,0 +1,49 @@
+===============
+Decimal literal
+===============
+
+234
+
+---
+
+(source_file
+	(literal
+		(integer_literal
+			(decimal_literal))))
+
+===================
+Hexadecimal literal
+===================
+
+0xfacef33d
+
+---
+
+(source_file
+	(literal
+		(integer_literal
+			(hex_literal))))
+
+=======================
+Boolean literal (true)
+=======================
+
+true
+
+---
+
+(source_file
+	(literal
+		(boolean_literal)))
+
+=======================
+Boolean literal (false)
+=======================
+
+false
+
+---
+
+(source_file
+	(literal
+		(boolean_literal)))

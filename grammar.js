@@ -43,9 +43,6 @@ module.exports = grammar({
     //   // assignment_operator: "=" | "*=" | "/=" | "%=" | "+=" | "-="
     //   assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
 
-    //   // boolean_literal: "true" | "false"
-    //   boolean_literal: ($) => choice("true", "false"),
-
     //   // build_definition: (NEWLINE | statement)*
     //   build_definition: ($) => repeat1($.statement),
 
@@ -230,8 +227,8 @@ module.exports = grammar({
     literal: ($) =>
       choice(
         $.integer_literal,
-        $.string_literal
-        // $.boolean_literal,
+        $.string_literal,
+        $.boolean_literal,
         // $.array_literal,
         // $.dictionary_literal
       ),
@@ -275,19 +272,19 @@ module.exports = grammar({
               /\d{2,3}/,
               /x[0-9a-fA-F]{2,}/,
               /u[0-9a-fA-F]{4}/,
-              /U[0-9a-fA-F]{8}/
-            )
-          )
-        )
+              /U[0-9a-fA-F]{8}/,
+            ),
+          ),
+        ),
       ),
 
     string_simple: ($) =>
       seq(
         "'",
         repeat(
-          choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence)
+          choice(token.immediate(prec(1, /[^\\'\n]+/)), $.escape_sequence),
         ),
-        "'"
+        "'",
       ),
 
     string_multiline: ($) =>
@@ -298,10 +295,13 @@ module.exports = grammar({
             token.immediate(prec(1, /[^\\']+/)),
             "''",
             "'",
-            $.escape_sequence
-          )
+            $.escape_sequence,
+          ),
         ),
-        "'''"
+        "'''",
       ),
+
+    // boolean_literal: "true" | "false"
+    boolean_literal: ($) => choice("true", "false"),
   },
 });
