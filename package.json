@@ -18,5 +18,13 @@
   "homepage": "https://github.com/bearcove/tree-sitter-meson#readme",
   "dependencies": {
     "nan": "^2.15.0"
-  }
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.meson",
+      "file-types": [
+        "build"
+      ]
+    }
+  ]
 }

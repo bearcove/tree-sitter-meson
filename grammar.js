@@ -293,7 +293,14 @@ module.exports = grammar({
     string_multiline: ($) =>
       seq(
         "'''",
-        repeat(choice(token.immediate(prec(1, /[^\\]+/)), $.escape_sequence)),
+        repeat(
+          choice(
+            token.immediate(prec(1, /[^\\']+/)),
+            "''",
+            "'",
+            $.escape_sequence
+          )
+        ),
         "'''"
       ),
   },

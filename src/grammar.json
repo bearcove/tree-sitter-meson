@@ -186,9 +186,17 @@
                   "value": 1,
                   "content": {
                     "type": "PATTERN",
-                    "value": "[^\\\\]+"
+                    "value": "[^\\\\']+"
                   }
                 }
+              },
+              {
+                "type": "STRING",
+                "value": "''"
+              },
+              {
+                "type": "STRING",
+                "value": "'"
               },
               {
                 "type": "SYMBOL",
