@@ -23,6 +23,18 @@ joined = '/usr/share' / 'projectname'    # => /usr/share/projectname
 string_var = '42'
 num = string_var.to_int()
 
+my_dict = {'foo': 42, 'bar': 'baz'}
+
+if 'foo' in my_dict
+# This condition is true
+endif
+if 42 in my_dict
+# This condition is false
+endif
+if 'foo' not in my_dict
+# This condition is false
+endif
+
 progs = [['prog1', ['prog1.c', 'foo.c']],
          ['prog2', ['prog2.c', 'bar.c']]]
 

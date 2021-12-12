@@ -117,3 +117,20 @@ Primary expressions
                   (expression
                     (primary_expression
                       (id_expression))))))))))))
+
+================================================================================
+Unary negation
+================================================================================
+
+!bar
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (unary_expression
+          (expression
+            (primary_expression
+              (id_expression))))))))

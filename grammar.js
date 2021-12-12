@@ -13,20 +13,6 @@ module.exports = grammar({
     //       $.keyword_arguments
     //     ),
 
-    //   // equality_expression: relational_expression | (equality_expression equality_operator relational_expression)
-    //   equality_expression: ($) =>
-    //     choice(
-    //       $.relational_expression,
-    //       seq($.equality_expression, $.equality_operator, $.relational_expression)
-    //     ),
-
-    //   // equality_operator: "==" | "!="
-    //   equality_operator: ($) => choice("==", "!="),
-
-    //   // expression: conditional_expression | logical_or_expression
-    //   expression: ($) =>
-    //     choice($.conditional_expression, $.logical_or_expression),
-
     //   // expression_list: expression ("," expression)*
     //   expression_list: ($) => seq($.expression, repeat(seq(",", $.expression))),
 
@@ -108,10 +94,6 @@ module.exports = grammar({
     //       )
     //     ),
 
-    //   // relational_operator: ">" | "<" | ">=" | "<=" | "in" | ("not" "in")
-    //   relational_operator: ($) =>
-    //     choice(">", "<", ">=", "<=", "in", seq("not", "in")),
-
     //   // subscript_expression: postfix_expression "[" expression "]"
     //   subscript_expression: ($) =>
     //     seq($.postfix_expression, "[", $.expression, "]"),
@@ -179,25 +161,31 @@ module.exports = grammar({
     expression: ($) =>
       choice(
         $.conditional_expression,
+        $.unary_expression,
         $.binary_expression,
         $.literal,
         $.primary_expression,
       ),
 
+    unary_expression: ($) =>
+      choice(seq("!", $.expression), seq("-", $.expression)),
+
     binary_expression: ($) =>
       choice(
         prec.left(
-          2,
+          3,
           seq($.expression, $.multiplicative_operator, $.expression),
         ),
-        prec.left(1, seq($.expression, $.additive_operator, $.expression)),
+        prec.left(2, seq($.expression, $.additive_operator, $.expression)),
+        prec.left(1, seq($.expression, $.equality_operator, $.expression)),
+        prec.left(1, seq($.expression, $.relational_operator, $.expression)),
       ),
 
-    // additive_operator: "+" | "-"
     additive_operator: ($) => choice("+", "-"),
-
-    // multiplicative_operator: "*" | "/" | "%"
     multiplicative_operator: ($) => choice("*", "/", "%"),
+    equality_operator: ($) => choice("==", "!="),
+    relational_operator: ($) =>
+      choice(">", "<", ">=", "<=", "in", seq("not", "in")),
 
     // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
     // (this is an error, there's no `assignment_expression` rule, since assignments
