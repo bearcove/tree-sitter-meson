@@ -3,7 +3,41 @@
   "rules": {
     "source_file": {
       "type": "SYMBOL",
-      "name": "literal"
+      "name": "build_definition"
+    },
+    "build_definition": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "statement"
+      }
+    },
+    "statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "expression"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_NEWLINE"
+        }
+      ]
+    },
+    "expression": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "literal"
+        }
+      ]
     },
     "literal": {
       "type": "CHOICE",
@@ -225,6 +259,19 @@
         {
           "type": "STRING",
           "value": "false"
+        }
+      ]
+    },
+    "_NEWLINE": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "STRING",
+          "value": "\r\n"
         }
       ]
     }

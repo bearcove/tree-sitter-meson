@@ -4,11 +4,7 @@ module.exports = grammar({
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
     // this is tree-sitter's root file
-    // source_file: ($) => $.build_definition,
-    source_file: ($) => $.literal,
-
-    //   // built-ins
-    //   NEWLINE: ($) => choice("\n", "\r\n"),
+    source_file: ($) => $.build_definition,
 
     //   // anything beyond that point directly references the meson grammar
 
@@ -42,9 +38,6 @@ module.exports = grammar({
 
     //   // assignment_operator: "=" | "*=" | "/=" | "%=" | "+=" | "-="
     //   assignment_operator: ($) => choice("=", "*=", "/=", "%=", "+=", "-="),
-
-    //   // build_definition: (NEWLINE | statement)*
-    //   build_definition: ($) => repeat1($.statement),
 
     //   // condition: expression
     //   condition: ($) => $.expression,
@@ -200,18 +193,6 @@ module.exports = grammar({
     //       "endif"
     //     ),
 
-    //   // statement: (expression_statement | selection_statement | iteration_statement | assignment_statement) NEWLINE
-    //   statement: ($) =>
-    //     seq(
-    //       choice(
-    //         $.expression_statement,
-    //         $.selection_statement,
-    //         $.iteration_statement,
-    //         $.assignment_statement
-    //       ),
-    //       $.NEWLINE
-    //     ),
-
     //   // subscript_expression: postfix_expression "[" expression "]"
     //   subscript_expression: ($) =>
     //     seq($.postfix_expression, "[", $.expression, "]"),
@@ -222,6 +203,23 @@ module.exports = grammar({
 
     //   // unary_operator: "not" | "+" | "-"
     //   unary_operator: ($) => choice("not", "+", "-"),
+
+    // build_definition: (NEWLINE | statement)*
+    build_definition: ($) => repeat1($.statement),
+
+    // statement: (expression_statement | selection_statement | iteration_statement | assignment_statement) NEWLINE
+    statement: ($) =>
+      seq(
+        choice(
+          $.expression,
+          // $.selection_statement,
+          // $.iteration_statement,
+          // $.assignment_statement,
+        ),
+        $._NEWLINE,
+      ),
+
+    expression: ($) => choice($.literal),
 
     // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
     literal: ($) =>
@@ -303,5 +301,7 @@ module.exports = grammar({
 
     // boolean_literal: "true" | "false"
     boolean_literal: ($) => choice("true", "false"),
+
+    _NEWLINE: ($) => choice("\n", "\r\n"),
   },
 });
