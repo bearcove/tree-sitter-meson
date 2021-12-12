@@ -20,6 +20,10 @@
           "members": [
             {
               "type": "SYMBOL",
+              "name": "comment"
+            },
+            {
+              "type": "SYMBOL",
               "name": "expression"
             },
             {
@@ -593,6 +597,10 @@
     "_IDENTIFIER": {
       "type": "PATTERN",
       "value": "[a-zA-Z_][a-zA-Z_0-9]*"
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "#[^\\n]*\\n"
     }
   },
   "extras": [

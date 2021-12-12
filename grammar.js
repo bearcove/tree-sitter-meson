@@ -163,6 +163,7 @@ module.exports = grammar({
     statement: ($) =>
       seq(
         choice(
+          $.comment,
           $.expression,
           $.selection_statement,
           $.iteration_statement,
@@ -316,5 +317,7 @@ module.exports = grammar({
 
     // IDENTIFIER: /[a-zA-Z_][a-zA-Z_0-9]*/
     _IDENTIFIER: ($) => /[a-zA-Z_][a-zA-Z_0-9]*/,
+
+    comment: ($) => /#[^\n]*\n/,
   },
 });

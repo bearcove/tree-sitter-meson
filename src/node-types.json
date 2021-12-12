@@ -269,6 +269,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -379,6 +383,10 @@
   {
     "type": "break",
     "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
   },
   {
     "type": "continue",
