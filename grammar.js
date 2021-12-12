@@ -6,20 +6,6 @@ module.exports = grammar({
     // this is tree-sitter's root file
     source_file: ($) => $.build_definition,
 
-    //   // additive_expression: multiplicative_expression | (additive_expression additive_operator multiplicative_expression)
-    //   additive_expression: ($) =>
-    //     choice(
-    //       $.multiplicative_expression,
-    //       seq(
-    //         $.additive_expression,
-    //         $.additive_operator,
-    //         $.multiplicative_expression
-    //       )
-    //     ),
-
-    //   // additive_operator: "+" | "-"
-    //   additive_operator: ($) => choice("+", "-"),
-
     //   // argument_list: positional_arguments ["," keyword_arguments] | keyword_arguments
     //   argument_list: ($) =>
     //     choice(
@@ -102,9 +88,6 @@ module.exports = grammar({
     //         $.unary_expression
     //       )
     //     ),
-
-    //   // multiplicative_operator: "*" | "/" | "%"
-    //   multiplicative_operator: ($) => choice("*", "/", "%"),
 
     //   // positional_arguments: expression ("," expression)*
     //   positional_arguments: ($) =>
@@ -202,7 +185,22 @@ module.exports = grammar({
     // condition: expression
     condition: ($) => $.expression,
 
-    expression: ($) => choice($.literal, $.id_expression),
+    expression: ($) => choice($.binary_expression, $.literal, $.id_expression),
+
+    binary_expression: ($) =>
+      choice(
+        prec.left(
+          2,
+          seq($.expression, $.multiplicative_operator, $.expression),
+        ),
+        prec.left(1, seq($.expression, $.additive_operator, $.expression)),
+      ),
+
+    // additive_operator: "+" | "-"
+    additive_operator: ($) => choice("+", "-"),
+
+    // multiplicative_operator: "*" | "/" | "%"
+    multiplicative_operator: ($) => choice("*", "/", "%"),
 
     // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
     literal: ($) =>

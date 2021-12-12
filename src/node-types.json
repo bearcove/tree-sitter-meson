@@ -1,5 +1,10 @@
 [
   {
+    "type": "additive_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "array_literal",
     "named": true,
     "fields": {},
@@ -33,6 +38,29 @@
         },
         {
           "type": "expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "additive_operator",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "multiplicative_operator",
           "named": true
         }
       ]
@@ -101,6 +129,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "binary_expression",
+          "named": true
+        },
         {
           "type": "id_expression",
           "named": true
@@ -250,6 +282,11 @@
     }
   },
   {
+    "type": "multiplicative_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "octal_literal",
     "named": true,
     "fields": {}
@@ -377,6 +414,10 @@
     "named": false
   },
   {
+    "type": "%",
+    "named": false
+  },
+  {
     "type": "%=",
     "named": false
   },
@@ -393,7 +434,15 @@
     "named": false
   },
   {
+    "type": "*",
+    "named": false
+  },
+  {
     "type": "*=",
+    "named": false
+  },
+  {
+    "type": "+",
     "named": false
   },
   {
@@ -405,7 +454,15 @@
     "named": false
   },
   {
+    "type": "-",
+    "named": false
+  },
+  {
     "type": "-=",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {

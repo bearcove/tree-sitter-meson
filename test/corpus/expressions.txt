@@ -1,0 +1,75 @@
+================================================================================
+Addition
+================================================================================
+
+12 + 34
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (binary_expression
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal))))
+          (additive_operator)
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))))))
+
+================================================================================
+Multiplication
+================================================================================
+
+12 * 34
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (binary_expression
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal))))
+          (multiplicative_operator)
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal)))))))))
+
+================================================================================
+AddMul Precedence
+================================================================================
+
+1 + 2 * 3
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (binary_expression
+          (expression
+            (literal
+              (integer_literal
+                (decimal_literal))))
+          (additive_operator)
+          (expression
+            (binary_expression
+              (expression
+                (literal
+                  (integer_literal
+                    (decimal_literal))))
+              (multiplicative_operator)
+              (expression
+                (literal
+                  (integer_literal
+                    (decimal_literal)))))))))))
