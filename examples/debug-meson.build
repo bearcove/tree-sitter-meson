@@ -1,1 +1,4 @@
-[0, 1, 0]
+a = b # c
+# full-line comment
+a = b # c
+a = b # c

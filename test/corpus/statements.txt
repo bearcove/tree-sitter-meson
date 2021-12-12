@@ -124,3 +124,31 @@ foo = 'bar'
           (literal
             (string_literal
               (string_simple))))))))
+
+================================================================================
+Path join
+================================================================================
+
+joined = '/usr/share' / 'projectname'
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (assignment_statement
+        (expression
+          (primary_expression
+            (id_expression)))
+        (assignment_operator)
+        (expression
+          (binary_expression
+            (expression
+              (literal
+                (string_literal
+                  (string_simple))))
+            (mult_operator)
+            (expression
+              (literal
+                (string_literal
+                  (string_simple))))))))))

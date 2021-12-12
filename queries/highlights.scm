@@ -16,6 +16,11 @@
 "break" @keyword
 "continue" @keyword
 
+"not" @keyword
+"in" @keyword
+"and" @keyword
+"or" @keyword
+
 [
 	"+"
 	"-"

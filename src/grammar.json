@@ -303,6 +303,69 @@
       "members": [
         {
           "type": "PREC_LEFT",
+          "value": 6,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "mult_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 5,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "add_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
+          "value": 4,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "equ_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expression"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC_LEFT",
           "value": 3,
           "content": {
             "type": "SEQ",
@@ -313,7 +376,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "multiplicative_operator"
+                "name": "rel_operator"
               },
               {
                 "type": "SYMBOL",
@@ -333,8 +396,8 @@
                 "name": "expression"
               },
               {
-                "type": "SYMBOL",
-                "name": "additive_operator"
+                "type": "STRING",
+                "value": "and"
               },
               {
                 "type": "SYMBOL",
@@ -354,29 +417,8 @@
                 "name": "expression"
               },
               {
-                "type": "SYMBOL",
-                "name": "equality_operator"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "expression"
-              }
-            ]
-          }
-        },
-        {
-          "type": "PREC_LEFT",
-          "value": 1,
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "expression"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "relational_operator"
+                "type": "STRING",
+                "value": "or"
               },
               {
                 "type": "SYMBOL",
@@ -387,7 +429,7 @@
         }
       ]
     },
-    "additive_operator": {
+    "add_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -400,7 +442,7 @@
         }
       ]
     },
-    "multiplicative_operator": {
+    "mult_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -417,7 +459,7 @@
         }
       ]
     },
-    "equality_operator": {
+    "equ_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -430,7 +472,7 @@
         }
       ]
     },
-    "relational_operator": {
+    "rel_operator": {
       "type": "CHOICE",
       "members": [
         {
@@ -796,15 +838,32 @@
       ]
     },
     "_NEWLINE": {
-      "type": "CHOICE",
+      "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "\n"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "comment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
-          "type": "STRING",
-          "value": "\r\n"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "\n"
+            },
+            {
+              "type": "STRING",
+              "value": "\r\n"
+            }
+          ]
         }
       ]
     },
@@ -940,7 +999,7 @@
     },
     "comment": {
       "type": "PATTERN",
-      "value": "#[^\\n]*\\n"
+      "value": "#[^\\n]*"
     }
   },
   "extras": [

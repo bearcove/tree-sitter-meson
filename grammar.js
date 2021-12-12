@@ -172,20 +172,18 @@ module.exports = grammar({
 
     binary_expression: ($) =>
       choice(
-        prec.left(
-          3,
-          seq($.expression, $.multiplicative_operator, $.expression),
-        ),
-        prec.left(2, seq($.expression, $.additive_operator, $.expression)),
-        prec.left(1, seq($.expression, $.equality_operator, $.expression)),
-        prec.left(1, seq($.expression, $.relational_operator, $.expression)),
+        prec.left(6, seq($.expression, $.mult_operator, $.expression)),
+        prec.left(5, seq($.expression, $.add_operator, $.expression)),
+        prec.left(4, seq($.expression, $.equ_operator, $.expression)),
+        prec.left(3, seq($.expression, $.rel_operator, $.expression)),
+        prec.left(2, seq($.expression, "and", $.expression)),
+        prec.left(1, seq($.expression, "or", $.expression)),
       ),
 
-    additive_operator: ($) => choice("+", "-"),
-    multiplicative_operator: ($) => choice("*", "/", "%"),
-    equality_operator: ($) => choice("==", "!="),
-    relational_operator: ($) =>
-      choice(">", "<", ">=", "<=", "in", seq("not", "in")),
+    add_operator: ($) => choice("+", "-"),
+    mult_operator: ($) => choice("*", "/", "%"),
+    equ_operator: ($) => choice("==", "!="),
+    rel_operator: ($) => choice(">", "<", ">=", "<=", "in", seq("not", "in")),
 
     // conditional_expression: logical_or_expression | (logical_or_expression "?" expression ":" assignment_expression
     // (this is an error, there's no `assignment_expression` rule, since assignments
@@ -290,7 +288,7 @@ module.exports = grammar({
         "]",
       ),
 
-    _NEWLINE: ($) => choice("\n", "\r\n"),
+    _NEWLINE: ($) => seq(optional($.comment), choice("\n", "\r\n")),
 
     // dictionary_literal: "{" [key_value_list] "}"
     dictionary_literal: ($) =>
@@ -317,6 +315,6 @@ module.exports = grammar({
     // IDENTIFIER: /[a-zA-Z_][a-zA-Z_0-9]*/
     _IDENTIFIER: ($) => /[a-zA-Z_][a-zA-Z_0-9]*/,
 
-    comment: ($) => /#[^\n]*\n/,
+    comment: ($) => /#[^\n]*/,
   },
 });
