@@ -6,51 +6,6 @@ module.exports = grammar({
     // this is tree-sitter's root file
     source_file: ($) => $.build_definition,
 
-    //   // expression_list: expression ("," expression)*
-    //   expression_list: ($) => seq($.expression, repeat(seq(",", $.expression))),
-
-    //   // expression_statement: expression
-    //   expression_statement: ($) => $.expression,
-
-    //   // method_expression: postfix_expression "." function_expression
-    //   method_expression: ($) =>
-    //     seq($.postfix_expression, ".", $.function_expression),
-
-    //   // postfix_expression: primary_expression | subscript_expression | function_expression | method_expression
-    //   postfix_expression: ($) =>
-    //     choice(
-    //       $.primary_expression,
-    //       $.subscript_expression,
-    //       $.function_expression,
-    //       $.method_expression
-    //     ),
-
-    // primary_expression: literal | ("(" expression ")") | id_expression
-    // primary_expression: ($) =>
-    //   choice($.literal, seq("(", $.expression, ")"), $.id_expression),
-
-    //   // relational_expression: additive_expression | (relational_expression relational_operator additive_expression)
-    //   relational_expression: ($) =>
-    //     choice(
-    //       $.additive_expression,
-    //       seq(
-    //         $.relational_expression,
-    //         $.relational_operator,
-    //         $.additive_expression
-    //       )
-    //     ),
-
-    //   // subscript_expression: postfix_expression "[" expression "]"
-    //   subscript_expression: ($) =>
-    //     seq($.postfix_expression, "[", $.expression, "]"),
-
-    //   // unary_expression: postfix_expression | (unary_operator unary_expression)
-    //   unary_expression: ($) =>
-    //     choice($.postfix_expression, seq($.unary_operator, $.unary_expression)),
-
-    //   // unary_operator: "not" | "+" | "-"
-    //   unary_operator: ($) => choice("not", "+", "-"),
-
     // build_definition: (NEWLINE | statement)*
     build_definition: ($) => repeat1($.statement),
 
@@ -110,6 +65,7 @@ module.exports = grammar({
         $.conditional_expression,
         $.unary_expression,
         $.subscript_expression,
+        $.method_expression,
         $.binary_expression,
         $.literal,
         $.primary_expression,
@@ -120,24 +76,13 @@ module.exports = grammar({
       seq($.id_expression, "(", optional($.argument_list), ")"),
 
     // argument_list: positional_arguments ["," keyword_arguments] | keyword_arguments
+    // FIXME: this isn't strictly correct, as it accepts positional arguments
+    // and keyword arguments in any order, rather than "positional argument first, then keyword arguments"
     argument_list: ($) =>
       seq(
         choice($.keyword_item, $.expression),
         repeat(seq(",", choice($.keyword_item, $.expression))),
       ),
-    // argument_list: ($) =>
-    //   choice(
-    //     seq($.positional_arguments, optional(seq(",", $.keyword_arguments))),
-    //     $.keyword_arguments,
-    //   ),
-
-    // positional_arguments: expression ("," expression)*
-    positional_arguments: ($) =>
-      seq($.expression, repeat(seq(",", $.expression))),
-
-    // keyword_arguments: keyword_item ("," keyword_item)*
-    keyword_arguments: ($) =>
-      seq($.keyword_item, repeat(seq(",", $.keyword_item))),
 
     // keyword_item: id_expression ":" expression
     keyword_item: ($) => seq($.id_expression, ":", $.expression),
@@ -149,8 +94,21 @@ module.exports = grammar({
     key_value_list: ($) =>
       seq($.key_value_item, repeat(seq(",", $.key_value_item))),
 
+    method_expression: ($) =>
+      prec.left(
+        1,
+        seq(
+          $.expression,
+          ".",
+          $.id_expression,
+          "(",
+          optional($.argument_list),
+          ")",
+        ),
+      ),
+
     subscript_expression: ($) =>
-      prec(2, seq($.expression, "[", $.expression, "]")),
+      prec.left(1, seq($.expression, "[", $.expression, "]")),
 
     unary_expression: ($) =>
       choice(seq("!", $.expression), seq("-", $.expression)),

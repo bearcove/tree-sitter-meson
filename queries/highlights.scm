@@ -1,6 +1,7 @@
 (string_literal) @string
-(boolean_literal) @keyword
-(integer_literal) @number
+
+(boolean_literal) @constant.builtin
+(integer_literal) @constant.builtin
 
 (comment) @comment
 
@@ -16,20 +17,21 @@
 "break" @keyword
 "continue" @keyword
 
-"not" @keyword
-"in" @keyword
-"and" @keyword
-"or" @keyword
+"not" @operator
+"in" @operator
+"and" @operator
+"or" @operator
 
-[
-	"+"
-	"-"
-	"*"
-	"/"
-	"%"
-] @operator
+"+" @operator
+"-" @operator
+"*" @operator
+"/" @operator
+"%" @operator
 
-[
-	":"
-	","
-] @punctuation.delimiter
+":" @punctuation.delimiter
+"," @punctuation.delimiter
+
+"(" @punctuation.bracket
+")" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket

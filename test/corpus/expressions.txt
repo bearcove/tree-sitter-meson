@@ -223,3 +223,40 @@ f(1, 2, a: b, c: d)
               (expression
                 (primary_expression
                   (id_expression))))))))))
+
+================================================================================
+Method call
+================================================================================
+
+foo.bar(1, 2, a: b, c: d)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (method_expression
+          (expression
+            (primary_expression
+              (id_expression)))
+          (id_expression)
+          (argument_list
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (expression
+              (literal
+                (integer_literal
+                  (decimal_literal))))
+            (keyword_item
+              (id_expression)
+              (expression
+                (primary_expression
+                  (id_expression))))
+            (keyword_item
+              (id_expression)
+              (expression
+                (primary_expression
+                  (id_expression))))))))))

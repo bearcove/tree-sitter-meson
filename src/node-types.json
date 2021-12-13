@@ -198,6 +198,10 @@
           "named": true
         },
         {
+          "type": "method_expression",
+          "named": true
+        },
+        {
           "type": "primary_expression",
           "named": true
         },
@@ -400,6 +404,29 @@
         },
         {
           "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "method_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "argument_list",
+          "named": true
+        },
+        {
+          "type": "expression",
+          "named": true
+        },
+        {
+          "type": "id_expression",
           "named": true
         }
       ]
@@ -657,6 +684,10 @@
   },
   {
     "type": "-=",
+    "named": false
+  },
+  {
+    "type": ".",
     "named": false
   },
   {
