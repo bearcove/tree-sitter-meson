@@ -175,7 +175,7 @@ f(1, 2, 3)
     (statement
       (expression
         (function_expression
-          (id_expression)
+          (function_id)
           (argument_list
             (expression
               (literal
@@ -203,7 +203,7 @@ f(1, 2, a: b, c: d)
     (statement
       (expression
         (function_expression
-          (id_expression)
+          (function_id)
           (argument_list
             (expression
               (literal
@@ -214,12 +214,12 @@ f(1, 2, a: b, c: d)
                 (integer_literal
                   (decimal_literal))))
             (keyword_item
-              (id_expression)
+              (keyword_arg_key)
               (expression
                 (primary_expression
                   (id_expression))))
             (keyword_item
-              (id_expression)
+              (keyword_arg_key)
               (expression
                 (primary_expression
                   (id_expression))))))))))
@@ -240,7 +240,7 @@ foo.bar(1, 2, a: b, c: d)
           (expression
             (primary_expression
               (id_expression)))
-          (id_expression)
+          (function_id)
           (argument_list
             (expression
               (literal
@@ -251,12 +251,12 @@ foo.bar(1, 2, a: b, c: d)
                 (integer_literal
                   (decimal_literal))))
             (keyword_item
-              (id_expression)
+              (keyword_arg_key)
               (expression
                 (primary_expression
                   (id_expression))))
             (keyword_item
-              (id_expression)
+              (keyword_arg_key)
               (expression
                 (primary_expression
                   (id_expression))))))))))

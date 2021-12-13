@@ -73,7 +73,7 @@ module.exports = grammar({
 
     // function_expression: id_expression "(" [argument_list] ")"
     function_expression: ($) =>
-      seq($.id_expression, "(", optional($.argument_list), ")"),
+      seq($.function_id, "(", optional($.argument_list), ")"),
 
     // argument_list: positional_arguments ["," keyword_arguments] | keyword_arguments
     // FIXME: this isn't strictly correct, as it accepts positional arguments
@@ -85,7 +85,7 @@ module.exports = grammar({
       ),
 
     // keyword_item: id_expression ":" expression
-    keyword_item: ($) => seq($.id_expression, ":", $.expression),
+    keyword_item: ($) => seq($.keyword_arg_key, ":", $.expression),
 
     // key_value_item: expression ":" expression
     key_value_item: ($) => seq($.expression, ":", $.expression),
@@ -100,7 +100,7 @@ module.exports = grammar({
         seq(
           $.expression,
           ".",
-          $.id_expression,
+          $.function_id,
           "(",
           optional($.argument_list),
           ")",
@@ -251,6 +251,9 @@ module.exports = grammar({
 
     primary_expression: ($) =>
       choice(seq("(", $.expression, ")"), $.id_expression),
+
+    function_id: ($) => $._IDENTIFIER,
+    keyword_arg_key: ($) => $._IDENTIFIER,
 
     // id_expression: IDENTIFIER
     id_expression: ($) => $._IDENTIFIER,

@@ -284,7 +284,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "id_expression"
+          "name": "function_id"
         },
         {
           "type": "STRING",
@@ -356,7 +356,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "id_expression"
+          "name": "keyword_arg_key"
         },
         {
           "type": "STRING",
@@ -434,7 +434,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "id_expression"
+            "name": "function_id"
           },
           {
             "type": "STRING",
@@ -1180,6 +1180,14 @@
           "name": "id_expression"
         }
       ]
+    },
+    "function_id": {
+      "type": "SYMBOL",
+      "name": "_IDENTIFIER"
+    },
+    "keyword_arg_key": {
+      "type": "SYMBOL",
+      "name": "_IDENTIFIER"
     },
     "id_expression": {
       "type": "SYMBOL",

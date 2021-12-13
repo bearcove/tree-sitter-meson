@@ -1,3 +1,5 @@
 /node_modules
+/target
 *.wasm
-log.html
+log*.html
+Cargo.lock

@@ -229,11 +229,16 @@
           "named": true
         },
         {
-          "type": "id_expression",
+          "type": "function_id",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "function_id",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "hex_literal",
@@ -360,6 +365,11 @@
     }
   },
   {
+    "type": "keyword_arg_key",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "keyword_item",
     "named": true,
     "fields": {},
@@ -372,7 +382,7 @@
           "named": true
         },
         {
-          "type": "id_expression",
+          "type": "keyword_arg_key",
           "named": true
         }
       ]
@@ -426,7 +436,7 @@
           "named": true
         },
         {
-          "type": "id_expression",
+          "type": "function_id",
           "named": true
         }
       ]

@@ -4,8 +4,8 @@
 (integer_literal) @constant.builtin
 
 (comment) @comment
-
-(id_expression) @variable.parameter
+(function_id) @function
+(keyword_arg_key) @property
 
 "if" @keyword
 "elif" @keyword
