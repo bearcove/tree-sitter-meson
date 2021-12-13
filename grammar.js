@@ -111,7 +111,11 @@ module.exports = grammar({
       prec.left(1, seq($.expression, "[", $.expression, "]")),
 
     unary_expression: ($) =>
-      choice(seq("!", $.expression), seq("-", $.expression)),
+      choice(
+        seq("not", $.expression),
+        seq("!", $.expression),
+        seq("-", $.expression),
+      ),
 
     binary_expression: ($) =>
       choice(
