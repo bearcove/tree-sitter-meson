@@ -94,11 +94,6 @@
     }
   },
   {
-    "type": "binary_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "boolean_literal",
     "named": true,
     "fields": {}
@@ -147,11 +142,6 @@
         }
       ]
     }
-  },
-  {
-    "type": "decimal_literal",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "dictionary_literal",
@@ -257,11 +247,6 @@
     "fields": {}
   },
   {
-    "type": "hex_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "id_expression",
     "named": true,
     "fields": {}
@@ -284,29 +269,7 @@
   {
     "type": "integer_literal",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_literal",
-          "named": true
-        },
-        {
-          "type": "decimal_literal",
-          "named": true
-        },
-        {
-          "type": "hex_literal",
-          "named": true
-        },
-        {
-          "type": "octal_literal",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "iteration_statement",
@@ -429,11 +392,6 @@
   },
   {
     "type": "mult_operator",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "octal_literal",
     "named": true,
     "fields": {}
   },

@@ -12,12 +12,10 @@ Addition
       (expression
         (binary_expression
           (expression
-            (integer_literal
-              (decimal_literal)))
+            (integer_literal))
           (add_operator)
           (expression
-            (integer_literal
-              (decimal_literal))))))))
+            (integer_literal)))))))
 
 ================================================================================
 Multiplication
@@ -33,12 +31,10 @@ Multiplication
       (expression
         (binary_expression
           (expression
-            (integer_literal
-              (decimal_literal)))
+            (integer_literal))
           (mult_operator)
           (expression
-            (integer_literal
-              (decimal_literal))))))))
+            (integer_literal)))))))
 
 ================================================================================
 AddMul Precedence
@@ -54,18 +50,15 @@ AddMul Precedence
       (expression
         (binary_expression
           (expression
-            (integer_literal
-              (decimal_literal)))
+            (integer_literal))
           (add_operator)
           (expression
             (binary_expression
               (expression
-                (integer_literal
-                  (decimal_literal)))
+                (integer_literal))
               (mult_operator)
               (expression
-                (integer_literal
-                  (decimal_literal))))))))))
+                (integer_literal)))))))))
 
 ================================================================================
 Ternary operator
@@ -164,11 +157,9 @@ a[234][512]
                 (primary_expression
                   (id_expression)))
               (expression
-                (integer_literal
-                  (decimal_literal)))))
+                (integer_literal))))
           (expression
-            (integer_literal
-              (decimal_literal))))))))
+            (integer_literal)))))))
 
 ================================================================================
 Function call
@@ -186,14 +177,11 @@ f(1, 2, 3)
           (function_id)
           (argument_list
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (expression
-              (integer_literal
-                (decimal_literal)))))))))
+              (integer_literal))))))))
 
 ================================================================================
 Function call with keyword arguments
@@ -211,11 +199,9 @@ f(1, 2, a: b, c: d)
           (function_id)
           (argument_list
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (keyword_item
               (keyword_arg_key)
               (expression
@@ -246,11 +232,9 @@ foo.bar(1, 2, a: b, c: d)
           (function_id)
           (argument_list
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (expression
-              (integer_literal
-                (decimal_literal)))
+              (integer_literal))
             (keyword_item
               (keyword_arg_key)
               (expression

@@ -10,8 +10,7 @@ Decimal literal
   (build_definition
     (statement
       (expression
-        (integer_literal
-          (decimal_literal))))))
+        (integer_literal)))))
 
 ================================================================================
 Hexadecimal literal
@@ -25,8 +24,7 @@ Hexadecimal literal
   (build_definition
     (statement
       (expression
-        (integer_literal
-        (hex_literal))))))
+        (integer_literal)))))
 
 ================================================================================
 Binary literal
@@ -40,8 +38,7 @@ Binary literal
   (build_definition
     (statement
       (expression
-        (integer_literal
-         (binary_literal))))))
+        (integer_literal)))))
 
 ================================================================================
 Boolean literal (true)
@@ -85,8 +82,7 @@ Array literal
       (expression
         (array_literal
           (expression
-            (integer_literal
-              (decimal_literal)))
+            (integer_literal))
           (expression
             (string_literal
               (string_simple)))
@@ -95,14 +91,11 @@ Array literal
           (expression
             (array_literal
               (expression
-                (integer_literal
-                  (decimal_literal)))
+                (integer_literal))
               (expression
-                (integer_literal
-                  (decimal_literal)))
+                (integer_literal))
               (expression
-                (integer_literal
-                  (decimal_literal))))))))))
+                (integer_literal)))))))))
 
 ================================================================================
 Dictionary literal (empty)
@@ -164,8 +157,7 @@ Dictionary literal (two keys)
               (string_literal
                 (string_simple)))
             (expression
-              (integer_literal
-                (decimal_literal)))))))))
+              (integer_literal))))))))
 
 ================================================================================
 Dictionary literal (array value)
@@ -190,8 +182,7 @@ Dictionary literal (array value)
                   (string_literal
                     (string_simple)))
                 (expression
-                  (integer_literal
-                    (hex_literal)))
+                  (integer_literal))
                 (expression
                   (boolean_literal))))))))))
 

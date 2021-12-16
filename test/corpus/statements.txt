@@ -17,8 +17,7 @@ endif
             (boolean_literal)))
         (statement
           (expression
-            (integer_literal
-              (decimal_literal))))))))
+            (integer_literal)))))))
 
 ================================================================================
 Selection statement (simple if/else)
@@ -41,8 +40,7 @@ endif
             (boolean_literal)))
         (statement
           (expression
-            (integer_literal
-              (decimal_literal))))
+            (integer_literal)))
         (statement
           (expression
             (string_literal
@@ -73,8 +71,7 @@ endif
             (boolean_literal)))
         (statement
           (expression
-            (integer_literal
-              (decimal_literal))))
+            (integer_literal)))
         (condition
           (expression
             (boolean_literal)))

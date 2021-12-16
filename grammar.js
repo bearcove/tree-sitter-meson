@@ -151,31 +151,31 @@ module.exports = grammar({
     // integer_literal: decimal_literal | octal_literal | hex_literal | binary_literal
     integer_literal: ($) =>
       choice(
-        $.decimal_literal,
-        $.octal_literal,
-        $.hex_literal,
-        $.binary_literal,
+        $._decimal_literal,
+        $._octal_literal,
+        $._hex_literal,
+        $._binary_literal,
       ),
 
     // decimal_literal: DECIMAL_NUMBER
-    decimal_literal: ($) => $._DECIMAL_NUMBER,
+    _decimal_literal: ($) => $._DECIMAL_NUMBER,
 
     // DECIMAL_NUMBER: /[1-9][0-9]*/
     _DECIMAL_NUMBER: ($) => /[0-9]+/,
 
     // octal_literal: "0o" OCTAL_NUMBER
-    octal_literal: ($) => seq("0o", $._OCTAL_NUMBER),
+    _octal_literal: ($) => seq("0o", $._OCTAL_NUMBER),
 
     // OCTAL_NUMBER: /[0-7]+/
     _OCTAL_NUMBER: ($) => /[0-7]+/,
 
     // hex_literal: "0x" HEX_NUMBER
-    hex_literal: ($) => seq("0x", $._HEX_NUMBER),
+    _hex_literal: ($) => seq("0x", $._HEX_NUMBER),
 
     // HEX_NUMBER: /[a-fA-F0-9]+/
     _HEX_NUMBER: ($) => /[a-fA-F0-9]+/,
 
-    binary_literal: ($) => seq("0b", $._BINARY_NUMBER),
+    _binary_literal: ($) => seq("0b", $._BINARY_NUMBER),
     _BINARY_NUMBER: ($) => /[01]+/,
 
     // string_literal: ("'" STRING_SIMPLE_VALUE "'") | ("'''" STRING_MULTILINE_VALUE "'''")
