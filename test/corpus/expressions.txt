@@ -214,6 +214,51 @@ f(1, 2, a: b, c: d)
                   (id_expression))))))))))
 
 ================================================================================
+Function call with trailing comma
+================================================================================
+
+f(1,)
+f(1, a: b,)
+f(1, a: b,
+)
+
+--------------------------------------------------------------------------------
+
+(source_file
+  (build_definition
+    (statement
+      (expression
+        (function_expression
+          (function_id)
+          (argument_list
+            (expression
+              (integer_literal))))))
+    (statement
+      (expression
+        (function_expression
+          (function_id)
+          (argument_list
+            (expression
+              (integer_literal))
+            (keyword_item
+              (keyword_arg_key)
+              (expression
+                (primary_expression
+                  (id_expression))))))))
+    (statement
+      (expression
+        (function_expression
+          (function_id)
+          (argument_list
+            (expression
+              (integer_literal))
+            (keyword_item
+              (keyword_arg_key)
+              (expression
+                (primary_expression
+                  (id_expression))))))))))
+
+================================================================================
 Method call
 ================================================================================
 
