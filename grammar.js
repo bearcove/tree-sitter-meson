@@ -67,7 +67,7 @@ module.exports = grammar({
         $.subscript_expression,
         $.method_expression,
         $.binary_expression,
-        $.literal,
+        $._literal,
         $.primary_expression,
       ),
 
@@ -139,7 +139,7 @@ module.exports = grammar({
       prec.left(1, seq($.expression, "?", $.expression, ":", $.expression)),
 
     // literal: integer_literal | string_literal | boolean_literal | array_literal | dictionary_literal
-    literal: ($) =>
+    _literal: ($) =>
       choice(
         $.integer_literal,
         $.string_literal,
