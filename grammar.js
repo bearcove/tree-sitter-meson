@@ -80,9 +80,11 @@ module.exports = grammar({
     // and keyword arguments in any order, rather than "positional argument first, then keyword arguments"
     argument_list: ($) =>
       seq(
-        choice($.keyword_item, $.expression),
-        repeat(seq(",", choice($.keyword_item, $.expression))),
-      ),
+        seq(
+          choice($.keyword_item, $.expression),
+          repeat(seq(",", choice($.keyword_item, $.expression))),
+        ),
+        optional(',')),
 
     // keyword_item: id_expression ":" expression
     keyword_item: ($) => seq($.keyword_arg_key, ":", $.expression),
