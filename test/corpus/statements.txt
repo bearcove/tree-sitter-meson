@@ -14,13 +14,10 @@ endif
       (selection_statement
         (condition
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (statement
           (expression
-            (literal
-              (integer_literal
-                (decimal_literal)))))))))
+            (integer_literal)))))))
 
 ================================================================================
 Selection statement (simple if/else)
@@ -40,18 +37,14 @@ endif
       (selection_statement
         (condition
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (statement
           (expression
-            (literal
-              (integer_literal
-                (decimal_literal)))))
+            (integer_literal)))
         (statement
           (expression
-            (literal
-              (string_literal
-                (string_simple)))))))))
+            (string_literal
+              (string_simple))))))))
 
 ================================================================================
 Selection statement (simple if/elif/else)
@@ -75,34 +68,26 @@ endif
       (selection_statement
         (condition
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (statement
           (expression
-            (literal
-              (integer_literal
-                (decimal_literal)))))
+            (integer_literal)))
         (condition
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (statement
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (condition
           (expression
-            (literal
-              (boolean_literal))))
+            (boolean_literal)))
         (statement
           (expression
-            (literal
-              (array_literal))))
+            (array_literal)))
         (statement
           (expression
-            (literal
-              (string_literal
-                (string_simple)))))))))
+            (string_literal
+              (string_simple))))))))
 
 ================================================================================
 Assignment
@@ -121,9 +106,8 @@ foo = 'bar'
             (id_expression)))
         (assignment_operator)
         (expression
-          (literal
-            (string_literal
-              (string_simple))))))))
+          (string_literal
+            (string_simple)))))))
 
 ================================================================================
 Path join
@@ -144,11 +128,9 @@ joined = '/usr/share' / 'projectname'
         (expression
           (binary_expression
             (expression
-              (literal
-                (string_literal
-                  (string_simple))))
+              (string_literal
+                (string_simple)))
             (mult_operator)
             (expression
-              (literal
-                (string_literal
-                  (string_simple))))))))))
+              (string_literal
+                (string_simple)))))))))

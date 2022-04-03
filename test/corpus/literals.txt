@@ -10,9 +10,7 @@ Decimal literal
   (build_definition
     (statement
       (expression
-        (literal
-          (integer_literal
-            (decimal_literal)))))))
+        (integer_literal)))))
 
 ================================================================================
 Hexadecimal literal
@@ -26,9 +24,7 @@ Hexadecimal literal
   (build_definition
     (statement
       (expression
-        (literal
-          (integer_literal
-            (hex_literal)))))))
+        (integer_literal)))))
 
 ================================================================================
 Binary literal
@@ -42,9 +38,7 @@ Binary literal
   (build_definition
     (statement
       (expression
-        (literal
-          (integer_literal
-            (binary_literal)))))))
+        (integer_literal)))))
 
 ================================================================================
 Boolean literal (true)
@@ -58,8 +52,7 @@ true
   (build_definition
     (statement
       (expression
-        (literal
-          (boolean_literal))))))
+        (boolean_literal)))))
 
 ================================================================================
 Boolean literal (false)
@@ -73,8 +66,7 @@ false
   (build_definition
     (statement
       (expression
-        (literal
-          (boolean_literal))))))
+        (boolean_literal)))))
 
 ================================================================================
 Array literal
@@ -88,34 +80,22 @@ Array literal
   (build_definition
     (statement
       (expression
-        (literal
-          (array_literal
-            (expression
-              (literal
-                (integer_literal
-                  (decimal_literal))))
-            (expression
-              (literal
-                (string_literal
-                  (string_simple))))
-            (expression
-              (literal
-                (boolean_literal)))
-            (expression
-              (literal
-                (array_literal
-                  (expression
-                    (literal
-                      (integer_literal
-                        (decimal_literal))))
-                  (expression
-                    (literal
-                      (integer_literal
-                        (decimal_literal))))
-                  (expression
-                    (literal
-                      (integer_literal
-                        (decimal_literal)))))))))))))
+        (array_literal
+          (expression
+            (integer_literal))
+          (expression
+            (string_literal
+              (string_simple)))
+          (expression
+            (boolean_literal))
+          (expression
+            (array_literal
+              (expression
+                (integer_literal))
+              (expression
+                (integer_literal))
+              (expression
+                (integer_literal)))))))))
 
 ================================================================================
 Dictionary literal (empty)
@@ -129,8 +109,7 @@ Dictionary literal (empty)
   (build_definition
     (statement
       (expression
-        (literal
-          (dictionary_literal))))))
+        (dictionary_literal)))))
 
 ================================================================================
 Dictionary literal (one key)
@@ -144,17 +123,14 @@ Dictionary literal (one key)
   (build_definition
     (statement
       (expression
-        (literal
-          (dictionary_literal
-            (key_value_item
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple)))))))))))
+        (dictionary_literal
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (string_literal
+                (string_simple)))))))))
 
 ================================================================================
 Dictionary literal (two keys)
@@ -168,26 +144,20 @@ Dictionary literal (two keys)
   (build_definition
     (statement
       (expression
-        (literal
-          (dictionary_literal
-            (key_value_item
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple)))))
-            (key_value_item
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (integer_literal
-                    (decimal_literal)))))))))))
+        (dictionary_literal
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (string_literal
+                (string_simple))))
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (integer_literal))))))))
 
 ================================================================================
 Dictionary literal (array value)
@@ -201,27 +171,20 @@ Dictionary literal (array value)
   (build_definition
     (statement
       (expression
-        (literal
-          (dictionary_literal
-            (key_value_item
-              (expression
-                (literal
+        (dictionary_literal
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (array_literal
+                (expression
                   (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (array_literal
-                    (expression
-                      (literal
-                        (string_literal
-                          (string_simple))))
-                    (expression
-                      (literal
-                        (integer_literal
-                          (hex_literal))))
-                    (expression
-                      (literal
-                        (boolean_literal)))))))))))))
+                    (string_simple)))
+                (expression
+                  (integer_literal))
+                (expression
+                  (boolean_literal))))))))))
 
 ================================================================================
 Dictionary literal (nested)
@@ -235,39 +198,30 @@ Dictionary literal (nested)
   (build_definition
     (statement
       (expression
-        (literal
-          (dictionary_literal
-            (key_value_item
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (dictionary_literal
-                    (key_value_item
-                      (expression
-                        (literal
-                          (string_literal
-                            (string_simple))))
-                      (expression
-                        (literal
-                          (string_literal
-                            (string_simple)))))))))
-            (key_value_item
-              (expression
-                (literal
-                  (string_literal
-                    (string_simple))))
-              (expression
-                (literal
-                  (dictionary_literal
-                    (key_value_item
-                      (expression
-                        (literal
-                          (string_literal
-                            (string_simple))))
-                      (expression
-                        (literal
-                          (string_literal
-                            (string_simple)))))))))))))))
+        (dictionary_literal
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (dictionary_literal
+                (key_value_item
+                  (expression
+                    (string_literal
+                      (string_simple)))
+                  (expression
+                    (string_literal
+                      (string_simple)))))))
+          (key_value_item
+            (expression
+              (string_literal
+                (string_simple)))
+            (expression
+              (dictionary_literal
+                (key_value_item
+                  (expression
+                    (string_literal
+                      (string_simple)))
+                    (expression
+                      (string_literal
+                        (string_simple))))))))))))

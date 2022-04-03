@@ -271,7 +271,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "literal"
+          "name": "_literal"
         },
         {
           "type": "SYMBOL",
@@ -769,7 +769,7 @@
         ]
       }
     },
-    "literal": {
+    "_literal": {
       "type": "CHOICE",
       "members": [
         {
@@ -799,23 +799,23 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "decimal_literal"
+          "name": "_decimal_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "octal_literal"
+          "name": "_octal_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "hex_literal"
+          "name": "_hex_literal"
         },
         {
           "type": "SYMBOL",
-          "name": "binary_literal"
+          "name": "_binary_literal"
         }
       ]
     },
-    "decimal_literal": {
+    "_decimal_literal": {
       "type": "SYMBOL",
       "name": "_DECIMAL_NUMBER"
     },
@@ -823,7 +823,7 @@
       "type": "PATTERN",
       "value": "[0-9]+"
     },
-    "octal_literal": {
+    "_octal_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -840,7 +840,7 @@
       "type": "PATTERN",
       "value": "[0-7]+"
     },
-    "hex_literal": {
+    "_hex_literal": {
       "type": "SEQ",
       "members": [
         {
@@ -857,7 +857,7 @@
       "type": "PATTERN",
       "value": "[a-fA-F0-9]+"
     },
-    "binary_literal": {
+    "_binary_literal": {
       "type": "SEQ",
       "members": [
         {
