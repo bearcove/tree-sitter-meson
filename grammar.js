@@ -1,6 +1,6 @@
 module.exports = grammar({
   name: "meson",
-  extras: ($) => [$.comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
+  extras: ($) => [$._comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
 
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
@@ -14,7 +14,7 @@ module.exports = grammar({
     statement: ($) =>
       seq(
         choice(
-          $.comment,
+          $._comment,
           $.expression,
           $.selection_statement,
           $.iteration_statement,
@@ -252,7 +252,7 @@ module.exports = grammar({
         "]",
       ),
 
-    _NEWLINE: ($) => seq(optional($.comment), choice("\n", "\r\n")),
+    _NEWLINE: ($) => seq(optional($._comment), choice("\n", "\r\n")),
 
     // dictionary_literal: "{" [key_value_list] "}"
     dictionary_literal: ($) =>
@@ -282,6 +282,6 @@ module.exports = grammar({
     // IDENTIFIER: /[a-zA-Z_][a-zA-Z_0-9]*/
     _IDENTIFIER: ($) => /[a-zA-Z_][a-zA-Z_0-9]*/,
 
-    comment: ($) => /#[^\n]*/,
+    _comment: ($) => /#[^\n]*/,
   },
 });
