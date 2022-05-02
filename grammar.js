@@ -233,7 +233,20 @@ module.exports = grammar({
     array_literal: ($) =>
       seq(
         "[",
-        optional(seq($.expression, repeat(seq(",", $.expression)), optional(","))),
+        seq(optional(repeat($._NEWLINE)),
+        optional(
+          seq(
+            $.expression,
+            repeat(
+              seq(
+                optional(repeat($._NEWLINE)),
+                ",",
+                $.expression
+              )
+            ),
+            optional(seq(optional(","), optional(repeat($._NEWLINE)))),
+          ),
+        )),
         "]",
       ),
 
