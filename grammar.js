@@ -1,5 +1,6 @@
 module.exports = grammar({
   name: "meson",
+  extras: ($) => [$.comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
 
   // Reference: <https://mesonbuild.com/Syntax.html>
   rules: {
