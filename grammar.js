@@ -66,8 +66,8 @@ module.exports = grammar({
         $.unary_expression,
         $.subscript_expression,
         $.method_expression,
-        $.binary_expression,
         $._literal,
+        $.binary_expression,
         $.primary_expression,
       ),
 
