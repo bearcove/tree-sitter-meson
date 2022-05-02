@@ -13,6 +13,10 @@
       "required": true,
       "types": [
         {
+          "type": "comment",
+          "named": true
+        },
+        {
           "type": "expression",
           "named": true
         },
@@ -31,6 +35,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
         {
           "type": "expression",
           "named": true
@@ -284,7 +292,7 @@
           "named": true
         },
         {
-          "type": "id_expression",
+          "type": "expression",
           "named": true
         },
         {
