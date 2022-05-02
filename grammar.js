@@ -40,7 +40,7 @@ module.exports = grammar({
         "foreach",
         $.identifier_list,
         ":",
-        $.id_expression,
+        $.expression,
         $._NEWLINE,
         repeat(choice($.statement, $.jump_statement)),
         "endforeach",
@@ -241,6 +241,7 @@ module.exports = grammar({
               seq(
                 optional(repeat($._NEWLINE)),
                 ",",
+                optional(repeat($._NEWLINE)),
                 $.expression
               )
             ),
